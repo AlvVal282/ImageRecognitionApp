@@ -1,11 +1,11 @@
 // project import
 import GuestGuard from 'utils/route-guard/GuestGuard';
-import Login from 'views/auth/login';
+import Home from 'views/home-page';
 
 export default function HomePage() {
   return (
     <GuestGuard>
-      <Login />
+      <Home />
     </GuestGuard>
   );
 }
