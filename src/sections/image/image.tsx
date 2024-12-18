@@ -9,6 +9,7 @@ import {
   CardContent,
   Card,
   Box,
+  Chip
 } from '@mui/material';
 import { useDropzone } from 'react-dropzone';
 import * as Yup from 'yup';
@@ -31,6 +32,7 @@ export default function Image({ onSuccess, onError }: IImageProps) {
   const [analysisResult, setAnalysisResult] = useState<IAnalysisResult | null>(null);
   const [showResult, setShowResult] = useState<boolean>(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [prevImagePreview, setPrevImagePreview] = useState<string | null>(null);
 
   // Validation schema
   const validationSchema = Yup.object().shape({
@@ -59,11 +61,13 @@ export default function Image({ onSuccess, onError }: IImageProps) {
               },
             })
             .then((response) => {
+              console.log(response.data);
               setSubmitting(false);
               resetForm();
               setAnalysisResult(response.data);
               setShowResult(true);
               setImagePreview(null);
+              setPrevImagePreview(imagePreview);
               onSuccess();
             })
             .catch((error) => {
@@ -170,18 +174,38 @@ export default function Image({ onSuccess, onError }: IImageProps) {
                   Tags:
                 </Typography>
                 <Box display="flex" flexWrap="wrap" gap={1}>
-                  {analysisResult.tags.map((tag, index) => (
-                    <Typography key={index} variant="body2">
-                      {tag.name} ({(tag.confidence * 100).toFixed(2)}%)
-                    </Typography>
-                  ))}
+                  <Box display="flex" flexWrap="wrap" gap={1}>
+                    {analysisResult.tags.map((tag, index) => (
+                      <Chip
+                        key={index}
+                        label={`${tag.name} (${(tag.confidence * 100).toFixed(2)}%)`}
+                        color="primary" 
+                        sx={{
+                          fontSize: '0.9rem',
+                          backgroundColor: tag.confidence > 0.7 ? 'green' : tag.confidence > 0.4 ? 'orange' : 'red',
+                          color: 'white',
+                        }}
+                      />
+                    ))}
+                  </Box>
                 </Box>
                 <Typography variant="h6" sx={{ marginTop: 2 }}>
                   Metadata:
                 </Typography>
-                <Typography>Width: {analysisResult.metadata.width}px</Typography>
-                <Typography>Height: {analysisResult.metadata.height}px</Typography>
-                <Typography>Format: {analysisResult.metadata.format}</Typography>
+                <Grid direction="row" container spacing={2} >
+                  <Grid item xs={12} md={6}>
+                    <Typography>Width: {analysisResult.metadata.width}px</Typography>
+                    <Typography>Height: {analysisResult.metadata.height}px</Typography>
+                    <Typography>Format: {analysisResult.metadata.format}</Typography>
+                  </Grid>
+                  <Grid item xs={12} md={6} textAlign="center" sx={{ marginTop: -5, marginLeft: 0 }}>
+                    {prevImagePreview && (
+                      <Box mt={2}>
+                        <img src={prevImagePreview} alt="Preview" width="100" height="100" />
+                      </Box>
+                    )}
+                  </Grid>
+                </Grid>
               </CardContent>
             </Card>
           </Grid>
