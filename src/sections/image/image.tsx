@@ -1,6 +1,4 @@
-'use client';
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   FormHelperText,
@@ -8,8 +6,8 @@ import {
   InputLabel,
   Stack,
   Typography,
-  Card,
   CardContent,
+  Card,
   Box,
 } from '@mui/material';
 import { useDropzone } from 'react-dropzone';
@@ -32,48 +30,40 @@ interface IImageProps {
 export default function Image({ onSuccess, onError }: IImageProps) {
   const [analysisResult, setAnalysisResult] = useState<IAnalysisResult | null>(null);
   const [showResult, setShowResult] = useState<boolean>(false);
-  const [imagePreview, setImagePreview] = useState<string | null>(null);  // State for image preview
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
 
-  const { getRootProps, getInputProps } = useDropzone({
-    accept: 'image/*',
-    onDrop: (acceptedFiles) => {
-      const file = acceptedFiles[0];
-      setImagePreview(URL.createObjectURL(file)); // Set the preview for the selected image
-    },
+  // Validation schema
+  const validationSchema = Yup.object().shape({
+    image: Yup.mixed().required('An image is required').test(
+      'fileType',
+      'Unsupported file type. Please upload a JPEG, PNG, or GIF image.',
+      (value) =>
+        value &&
+        ['image/jpeg', 'image/png', 'image/gif'].includes((value as File)?.type)
+    ),
   });
-
-  useEffect(() => {
-    setShowResult(false);
-    setImagePreview(null);  // Reset the preview when the component mounts
-  }, []);
 
   return (
     <>
       <Formik
         initialValues={{ image: null, submit: null }}
-        validationSchema={Yup.object({
-          image: Yup.mixed()
-            .required('An image file is required.')
-            .test('fileType', 'Only image files are allowed (jpeg, png, jpg).', (value) =>
-              value instanceof File && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type)
-            )
-            .test('fileSize', 'File size must be less than 5MB.', (value) =>
-              value instanceof File && value.size <= 5 * 1024 * 1024
-            ),
-        })}
+        validationSchema={validationSchema}
         onSubmit={(values, { setErrors, setSubmitting, resetForm }) => {
           const formData = new FormData();
-          formData.append('image', values.image);
+          formData.append('image', values.image as File);
 
           axios
             .post('/analyze', formData, {
-              headers: { 'Content-Type': 'multipart/form-data' },
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
             })
             .then((response) => {
               setSubmitting(false);
               resetForm();
               setAnalysisResult(response.data);
               setShowResult(true);
+              setImagePreview(null);
               onSuccess();
             })
             .catch((error) => {
@@ -86,61 +76,80 @@ export default function Image({ onSuccess, onError }: IImageProps) {
             });
         }}
       >
-        {({ errors, setFieldValue, handleSubmit, isSubmitting, touched }) => (
-          <form noValidate onSubmit={handleSubmit}>
-            <Grid container spacing={3}>
-              <Grid item xs={12} >
-                <Stack spacing={1} justifyContent='center' alignItems='center'>
-                  <InputLabel htmlFor="image">Upload an Image</InputLabel>
-                  <Box
-                    {...getRootProps()}
-                    sx={{
-                      border: '2px dashed gray',
-                      padding: 4,
-                      textAlign: 'center',
-                      cursor: 'pointer',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      width: 300,
-                      height: 200,
-                    }}
-                  >
-                    <input {...getInputProps()} />
-                    <Typography variant="h6">Drag & drop an image here, or click to select one</Typography>
-                    <Button variant="contained" sx={{ mt: 2 }}>
-                      Upload Image
-                    </Button>
-                  </Box>
+        {({ values, errors, touched, handleSubmit, isSubmitting, setFieldValue }) => {
+          const { getRootProps, getInputProps } = useDropzone({
+            accept: {
+              'image/jpeg': ['.jpeg', '.jpg'],
+              'image/png': ['.png'],
+              'image/gif': ['.gif'],
+            },
+            onDrop: (acceptedFiles) => {
+              if (acceptedFiles.length > 0) {
+                const file = acceptedFiles[0];
+                setImagePreview(URL.createObjectURL(file));
+                setFieldValue('image', file); 
+              }
+            },
+          });
 
-                  {imagePreview && (
-                    <Box mt={2} textAlign="center">
-                      <img src={imagePreview} alt="Preview" width="200" height="200" />
+          return (
+            <form noValidate onSubmit={handleSubmit}>
+              <Grid container spacing={3}>
+                <Grid item xs={12}>
+                  <Stack spacing={1} justifyContent="center" alignItems="center">
+                    <InputLabel htmlFor="image">Upload an Image</InputLabel>
+                    <Box
+                      {...getRootProps()}
+                      sx={{
+                        border: '2px dashed gray',
+                        padding: 4,
+                        textAlign: 'center',
+                        cursor: 'pointer',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        width: 300,
+                        height: 200,
+                      }}
+                    >
+                      <input {...getInputProps()} />
+                      <Typography variant="h6">
+                        Drag & drop an image here, or click to select one
+                      </Typography>
+                      <Button variant="contained" sx={{ mt: 2 }}>
+                        Upload Image
+                      </Button>
                     </Box>
-                  )}
-                </Stack>
-                {touched.image && errors.image && (
-                  <FormHelperText error>{errors.image}</FormHelperText>
-                )}
-              </Grid>
 
-              <Grid item xs={12}>
-                <AnimateButton>
-                  <Button
-                    disableElevation
-                    disabled={isSubmitting}
-                    fullWidth
-                    size="large"
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                  >
-                    ANALYZE
-                  </Button>
-                </AnimateButton>
+                    {imagePreview && (
+                      <Box mt={2} textAlign="center">
+                        <img src={imagePreview} alt="Preview" width="200" height="200" />
+                      </Box>
+                    )}
+                  </Stack>
+                  {touched.image && errors.image && (
+                    <FormHelperText error>{errors.image}</FormHelperText>
+                  )}
+                </Grid>
+
+                <Grid item xs={12}>
+                  <AnimateButton>
+                    <Button
+                      disableElevation
+                      disabled={isSubmitting}
+                      fullWidth
+                      size="large"
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                    >
+                      ANALYZE
+                    </Button>
+                  </AnimateButton>
+                </Grid>
               </Grid>
-            </Grid>
-          </form>
-        )}
+            </form>
+          );
+        }}
       </Formik>
 
       {showResult && analysisResult && (
