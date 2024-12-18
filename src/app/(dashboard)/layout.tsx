@@ -1,13 +1,13 @@
 // PROJECT IMPORTS
 import DashboardLayout from 'layout/DashboardLayout';
-import AuthGuard from 'utils/route-guard/AuthGuard';
+import GuestGuard from 'utils/route-guard/GuestGuard';
 
 // ==============================|| DASHBOARD LAYOUT ||============================== //
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <AuthGuard>
+    <GuestGuard>
       <DashboardLayout>{children}</DashboardLayout>
-    </AuthGuard>
+    </GuestGuard>
   );
 }

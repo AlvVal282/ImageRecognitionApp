@@ -4,15 +4,15 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import SendIcon from '@mui/icons-material/Send';
+import ImageIcon from '@mui/icons-material/Image';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Alert } from '@mui/material';
 
 // Project imports
-import PrioritySelector from 'components/PrioritySelector';
-import SendMessage from 'sections/messages/message-forms/messageSend';
+import ImageAnalysis from 'sections/image/image';
+import { grey } from '@mui/material/colors';
 
 const defaultTheme = createTheme();
 
@@ -28,14 +28,13 @@ const EMPTY_ALERT: IAlert = {
   alertSeverity: ''
 };
 
-export default function MessageSend() {
-  const [priority, setPriority] = React.useState(1);
+export default function Image() {
   const [alert, setAlert] = React.useState(EMPTY_ALERT);
 
   const onSuccess = () => {
     setAlert({
       showAlert: true,
-      alertMessage: 'The message was sent!',
+      alertMessage: 'The image was successfully analyzed',
       alertSeverity: 'success'
     });
   };
@@ -47,9 +46,6 @@ export default function MessageSend() {
       alertSeverity: 'error'
     });
   };
-
-  const handlePriorityClick = (event: React.MouseEvent<HTMLElement>, newPriority: number) => newPriority && setPriority(newPriority);
-
   return (
     <ThemeProvider theme={defaultTheme}>
       {alert.showAlert && (
@@ -64,19 +60,17 @@ export default function MessageSend() {
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <SendIcon />
+          <Avatar sx={{ m: 1, bgcolor: grey }}>
+            <ImageIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Send Messages
+            Select an image for analysis
           </Typography>
-
-          <Box sx={{ mt: 1 }}>
-            <PrioritySelector initialValue={priority} onClick={handlePriorityClick} />
-            <SendMessage priority={priority} onSuccess={onSuccess} onError={onError} />
+          <Box sx={{ mt: 1}}>
+            <ImageAnalysis onSuccess={onSuccess} onError={onError} />
           </Box>
         </Box>
       </Container>

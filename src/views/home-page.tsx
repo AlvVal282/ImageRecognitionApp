@@ -3,6 +3,7 @@
 import Typography from '@mui/material/Typography';
 import { Button, Divider, Box, Link , IconButton } from '@mui/material';
 import { GitHub, LinkedIn } from '@mui/icons-material';
+import { useRouter } from 'next/navigation';
 
 // project imports
 import MainCard from 'components/MainCard';
@@ -13,6 +14,11 @@ import { useTheme } from '@mui/material/styles';
 
 export default function HomePage() {
   const theme = useTheme();
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push('/image-page'); 
+  };
   
   return (
     <MainCard
@@ -105,6 +111,7 @@ export default function HomePage() {
               boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
             },
           }}
+          onClick={handleClick}
         >
           Upload Your Image
         </Button>
