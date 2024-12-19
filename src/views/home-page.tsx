@@ -17,7 +17,7 @@ export default function HomePage() {
   const router = useRouter();
 
   const handleImageAppClick = () => {
-    router.push('/image-page');
+    router.push('/imagerecognition/image-page');
   };
 
   return (

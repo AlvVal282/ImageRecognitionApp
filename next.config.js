@@ -15,7 +15,8 @@ const nextConfig = {
         hostname: 'flagcdn.com',
         pathname: '**'
       }
-    ]
+    ],
+    unoptimized: true, 
   },
   env: {
     NEXT_APP_VERSION: process.env.REACT_APP_VERSION,
@@ -26,7 +27,8 @@ const nextConfig = {
     NEXT_APP_JWT_SECRET: process.env.REACT_APP_JWT_SECRET,
     NEXT_APP_JWT_TIMEOUT: process.env.REACT_APP_JWT_TIMEOUT,
     NEXT_APP_GOOGLE_MAPS_API_KEY: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-  }
+  },
+  output: 'standalone',
 };
 
 module.exports = nextConfig;

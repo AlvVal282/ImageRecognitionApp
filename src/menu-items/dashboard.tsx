@@ -35,14 +35,14 @@ const pages: NavItemType = {
             id: 'About',
             title: <FormattedMessage id="About" />,
             type: 'item',
-            url: '/home-page',
+            url: '/imagerecognition/about-page',
             icon: icons.HelpOutlineOutlinedIcon
             },
             {
             id: 'Image Analyzer',
             title: <FormattedMessage id="Image Analyzer" />,
             type: 'item',
-            url: '/image-page',
+            url: '/imagerecognition/image-page',
             icon: icons.ImageIcon
             }
           ]

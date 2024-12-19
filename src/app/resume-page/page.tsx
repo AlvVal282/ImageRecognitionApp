@@ -1,4 +1,4 @@
-import Resume from 'views/imagerecognition/resume-page';
+import Resume from 'views/resume-page';
 import GuestGuard from 'utils/route-guard/GuestGuard';
 
 // ==============================|| PAGE ||============================== //
