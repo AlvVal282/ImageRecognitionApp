@@ -1,7 +1,7 @@
-'use client'
+'use client';
 // material-ui
 import Typography from '@mui/material/Typography';
-import { Button, Divider, Box, Link , IconButton } from '@mui/material';
+import { Button, Divider, Box, Link, IconButton } from '@mui/material';
 import { GitHub, LinkedIn } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 
@@ -16,10 +16,10 @@ export default function HomePage() {
   const theme = useTheme();
   const router = useRouter();
 
-  const handleClick = () => {
-    router.push('/image-page'); 
+  const handleImageAppClick = () => {
+    router.push('/image-page');
   };
-  
+
   return (
     <MainCard
       title="Alvaro Valdez-Duran"
@@ -34,69 +34,89 @@ export default function HomePage() {
         flexDirection: 'column',
       }}
     >
-      <Typography variant="h2" gutterBottom align="center" sx={{ fontWeight: 'bold', color: theme.palette.primary.main }}>
-        Welcome to the Image Recognition App
+      <Typography
+        variant="h2"
+        gutterBottom
+        align="center"
+        sx={{ fontWeight: 'bold', color: theme.palette.primary.main }}
+      >
+        Alvaro Valdez-Duran
+      </Typography>
+      <Typography variant="h6" align="center" sx={{ marginBottom: 3 }}>
+        Aspiring Software Engineer | Problem Solver | Lifelong Learner
       </Typography>
 
+      <Divider sx={{ marginY: 3 }} />
+
+      <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
+        About Me
+      </Typography>
       <Typography variant="body1" paragraph sx={{ lineHeight: 1.6 }}>
-        About This Project: Welcome to the Image Recognition App, a web-based platform designed to analyze and identify the content of uploaded images using cutting-edge AI technology. This project demonstrates the integration of powerful backend services, an interactive frontend, and cloud-based AI solutions to deliver a seamless and innovative user experience.
+        I’m a Computer Science student at the University of Washington Tacoma, expected to graduate in June 2025. My
+        interests lie in full-stack development, software engineering, and creating innovative solutions for real-world problems. 
+        I’m passionate about collaborating with others to bring ideas to life.
       </Typography>
 
       <Divider sx={{ marginY: 3 }} />
 
       <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
-        Key Features:
+        Technical Skills
       </Typography>
+      <Box
+        sx={{
+            display: 'flex',
+            flexDirection: 'column', 
+            gap: 2, 
+            marginBottom: 2,
+        }}
+      >
+        <Typography variant="body2">Languages: Python, C, C#, Java, JavaScript, TypeScript, SQL, R</Typography>
+        <Typography variant="body2">Frameworks & Tools: React, Next.js, Docker, Node.js, LibGDX</Typography>
+        <Typography variant="body2">Developer Tools: Git, GitHub, VS Code, IntelliJ, PyCharm</Typography>
+        <Typography variant="body2">Cloud Platforms: Azure, Render</Typography>
+      </Box>
 
+      <Divider sx={{ marginY: 3 }} />
+
+      <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
+        Notable Projects
+      </Typography>
       <Box sx={{ marginBottom: 2 }}>
         <Typography variant="body1" paragraph>
-          <strong>AI-Powered Image Analysis:</strong> Identify objects, scenes, and other elements in your images using Azure Computer Vision.
+          <strong>Evolved Names:</strong> A genetic algorithm written in Java to evolve strings toward a target within
+          100 generations. Achieved efficient convergence through adaptive parameters.{' '}
+          <Link href="https://github.com/AlvVal282/EvolvedNames" target="_blank">
+            View on GitHub
+          </Link>
         </Typography>
         <Typography variant="body1" paragraph>
-          <strong>Intuitive Interface:</strong> A modern, responsive design built with Next.js and Material UI for a clean and easy-to-navigate experience.
+          <strong>Dungeon Adventure:</strong> A 2D dungeon exploration game using LibGDX and Java, focusing on player
+          movement, combat mechanics, and immersive design.{' '}
+          <Link href="https://github.com/AlvVal282/Dungeon-Adventure" target="_blank">
+            View on GitHub
+          </Link>
         </Typography>
         <Typography variant="body1" paragraph>
-          <strong>Fast and Secure:</strong> Backend powered by Node.js with Express.js, ensuring quick processing and secure handling of your images.
-        </Typography>
-        <Typography variant="body1" paragraph>
-          <strong>Cloud Integration:</strong> Deployed with Render for backend APIs and GitHub Pages for the frontend, demonstrating a scalable and cost-efficient approach.
+          <strong>Library Book Management System:</strong> A full-stack app using React, Node.js, and PostgreSQL, with
+          features for managing books and user authentication.{' '}
+          <Link href="https://github.com/AlvVal282/Team5Front-End" target="_blank">
+            View Front-End on Github
+          </Link>
+          <br/>
+          <Link href="https://github.com/AlvVal282/Team5Back-End" target="_blank">
+            View Back-End on Github
+          </Link>
         </Typography>
       </Box>
 
       <Divider sx={{ marginY: 3 }} />
 
       <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
-        Why This Project?
+        Explore My Image Recognition App!
       </Typography>
-
       <Typography variant="body1" paragraph>
-        This project is a showcase of my ability to build full-stack applications that combine:
+        Upload an image to see state-of-the-art AI in action. Identify objects, landmarks, and scenes effortlessly.
       </Typography>
-      <Box sx={{ marginBottom: 2 }}>
-        <Typography variant="body1" paragraph>
-          <strong>Frontend Development:</strong> Modern design and responsiveness using React and Next.js.
-        </Typography>
-        <Typography variant="body1" paragraph>
-          <strong>Backend Engineering:</strong> Building robust APIs with Node.js, Express.js, and secure file handling.
-        </Typography>
-        <Typography variant="body1" paragraph>
-          <strong>Cloud and AI Integration:</strong> Leveraging Azure Cognitive Services for real-world AI applications.
-        </Typography>
-        <Typography variant="body1" paragraph>
-          <strong>DevOps Practices:</strong> Deployment and hosting using GitHub Pages and Render for a reliable production environment.
-        </Typography>
-      </Box>
-
-      <Divider sx={{ marginY: 3 }} />
-
-      <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
-        Explore and Try It Out!
-      </Typography>
-
-      <Typography variant="body1" paragraph>
-        Upload an image and see how the app can detect and describe the content. Whether it's objects, landmarks, or scenes, this app aims to provide an accurate analysis powered by state-of-the-art AI technology.
-      </Typography>
-
       <Box sx={{ textAlign: 'center', marginTop: 3 }}>
         <Button
           variant="contained"
@@ -106,30 +126,20 @@ export default function HomePage() {
             padding: '12px 24px',
             fontSize: '16px',
             borderRadius: '25px',
-            boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
-            '&:hover': {
-              boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
-            },
           }}
-          onClick={handleClick}
+          onClick={handleImageAppClick}
         >
-          Upload Your Image
+          Try It Out!
         </Button>
       </Box>
-      <Box sx={{ flexGrow: 1 }} />
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginTop: 4,
-          flexDirection: 'column',
-        }}
-      >
+
+      <Divider sx={{ marginY: 3 }} />
+
+      {/* Footer Section */}
+      <Box sx={{ textAlign: 'center', marginTop: 4 }}>
         <Typography variant="body2" color="textSecondary" sx={{ marginBottom: 1 }}>
           Connect with me
         </Typography>
-        
         <Box>
           <IconButton
             component={Link}
@@ -139,7 +149,6 @@ export default function HomePage() {
           >
             <LinkedIn fontSize="large" color="primary" />
           </IconButton>
-
           <IconButton
             component={Link}
             href="https://github.com/AlvVal282"
@@ -150,15 +159,15 @@ export default function HomePage() {
           </IconButton>
         </Box>
         <Button
-            variant="contained"
-            color="primary"
-            sx={{ marginTop: 2 }}
-            component={Link}
-            href= "/resume-page"
-            target="_blank"
-          >
-            View My Resume
-          </Button>
+          variant="contained"
+          color="primary"
+          sx={{ marginTop: 2 }}
+          component={Link}
+          href="/resume-page"
+          target="_blank"
+        >
+          View My Resume
+        </Button>
       </Box>
     </MainCard>
   );

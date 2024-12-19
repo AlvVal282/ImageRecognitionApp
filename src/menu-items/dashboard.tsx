@@ -14,8 +14,8 @@ const icons = { DashboardOutlinedIcon, HelpOutlineOutlinedIcon, ImageIcon };
 // ==============================|| MENU ITEMS - PAGES ||============================== //
 
 const pages: NavItemType = {
-  id: 'Image Recognition App',
-  title: <FormattedMessage id="Image Recognition App" />,
+  id: 'Projects',
+  title: <FormattedMessage id="Projects" />,
   type: 'group',
   children: [
     {
@@ -25,18 +25,27 @@ const pages: NavItemType = {
       icon: icons.DashboardOutlinedIcon,
       children: [
         {
-          id: 'About',
-          title: <FormattedMessage id="About" />,
-          type: 'item',
-          url: '/home-page',
-          icon: icons.HelpOutlineOutlinedIcon
-        },
-        {
-          id: 'Image Analyzer',
-          title: <FormattedMessage id="Image Analyzer" />,
-          type: 'item',
-          url: '/image-page',
-          icon: icons.ImageIcon
+          id: 'Image Recognition',
+          title: <FormattedMessage id="Image Recognition" />,
+          type: 'collapse',
+
+          icon: icons.DashboardOutlinedIcon,
+          children: [
+            {
+            id: 'About',
+            title: <FormattedMessage id="About" />,
+            type: 'item',
+            url: '/home-page',
+            icon: icons.HelpOutlineOutlinedIcon
+            },
+            {
+            id: 'Image Analyzer',
+            title: <FormattedMessage id="Image Analyzer" />,
+            type: 'item',
+            url: '/image-page',
+            icon: icons.ImageIcon
+            }
+          ]
         }
       ]
     }

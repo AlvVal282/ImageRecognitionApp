@@ -1,12 +1,12 @@
-import Image from 'views/image-page';
+import Home from 'views/home-page';
 import GuestGuard from 'utils/route-guard/GuestGuard';
 
 // ==============================|| PAGE ||============================== //
 
-export default function ImageViewPage() {
+export default function AboutViewPage() {
   return (
     <GuestGuard>
-      <Image />
+      <Home />
     </GuestGuard>
   );
 }

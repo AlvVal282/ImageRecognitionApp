@@ -1,12 +1,12 @@
-import Resume from 'views/imagerecognition/resume-page';
+import About from 'views/imagerecognition/about-page';
 import GuestGuard from 'utils/route-guard/GuestGuard';
 
 // ==============================|| PAGE ||============================== //
 
-export default function ResumePage() {
+export default function AboutViewPage() {
   return (
     <GuestGuard>
-      <Resume />
+      <About />
     </GuestGuard>
   );
 }
