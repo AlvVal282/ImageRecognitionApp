@@ -32,18 +32,18 @@ const pages: NavItemType = {
           icon: icons.DashboardOutlinedIcon,
           children: [
             {
-            id: 'About',
-            title: <FormattedMessage id="About" />,
-            type: 'item',
-            url: '/imagerecognition/about-page',
-            icon: icons.HelpOutlineOutlinedIcon
+              id: 'About',
+              title: <FormattedMessage id="About" />,
+              type: 'item',
+              url: '/imagerecognition/about-page',
+              icon: icons.HelpOutlineOutlinedIcon
             },
             {
-            id: 'Image Analyzer',
-            title: <FormattedMessage id="Image Analyzer" />,
-            type: 'item',
-            url: '/imagerecognition/image-page',
-            icon: icons.ImageIcon
+              id: 'Image Analyzer',
+              title: <FormattedMessage id="Image Analyzer" />,
+              type: 'item',
+              url: '/imagerecognition/image-page',
+              icon: icons.ImageIcon
             }
           ]
         }

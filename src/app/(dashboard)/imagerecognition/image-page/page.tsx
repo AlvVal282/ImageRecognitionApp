@@ -1,4 +1,4 @@
-import Image from 'views/imagerecognition/image-page';
+import IRecognition from 'views/imagerecognition/image-page';
 import GuestGuard from 'utils/route-guard/GuestGuard';
 
 // ==============================|| PAGE ||============================== //
@@ -6,7 +6,7 @@ import GuestGuard from 'utils/route-guard/GuestGuard';
 export default function ImageViewPage() {
   return (
     <GuestGuard>
-      <Image />
+      <IRecognition />
     </GuestGuard>
   );
 }

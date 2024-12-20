@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useEffect } from 'react';
 
 export default function ResumePage() {
@@ -13,7 +13,7 @@ export default function ResumePage() {
         style={{
           width: '100%',
           height: '100%',
-          border: 'none',
+          border: 'none'
         }}
         title="Resume"
       />

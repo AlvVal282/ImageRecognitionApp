@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
   modularizeImports: {
     '@mui/material': {
       transform: '@mui/material/{{member}}'
@@ -16,7 +17,7 @@ const nextConfig = {
         pathname: '**'
       }
     ],
-    unoptimized: true, 
+    unoptimized: true
   },
   env: {
     NEXT_APP_VERSION: process.env.REACT_APP_VERSION,
@@ -26,9 +27,8 @@ const nextConfig = {
     WEB_API_URL: process.env.WEB_API_URL,
     NEXT_APP_JWT_SECRET: process.env.REACT_APP_JWT_SECRET,
     NEXT_APP_JWT_TIMEOUT: process.env.REACT_APP_JWT_TIMEOUT,
-    NEXT_APP_GOOGLE_MAPS_API_KEY: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-  },
-  output: 'standalone',
+    NEXT_APP_GOOGLE_MAPS_API_KEY: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+  }
 };
 
 module.exports = nextConfig;

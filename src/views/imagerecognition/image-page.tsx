@@ -60,7 +60,7 @@ export default function Image() {
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
+            alignItems: 'center'
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: grey }}>
@@ -69,7 +69,7 @@ export default function Image() {
           <Typography component="h1" variant="h5">
             Select an image for analysis
           </Typography>
-          <Box sx={{ mt: 1}}>
+          <Box sx={{ mt: 1 }}>
             <ImageAnalysis onSuccess={onSuccess} onError={onError} />
           </Box>
         </Box>

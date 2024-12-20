@@ -1,7 +1,7 @@
-'use client'
+'use client';
 // material-ui
 import Typography from '@mui/material/Typography';
-import { Button, Divider, Box, Link , IconButton } from '@mui/material';
+import { Button, Divider, Box, Link, IconButton } from '@mui/material';
 import { GitHub, LinkedIn } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 
@@ -17,9 +17,9 @@ export default function HomePage() {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push('/imagerecognition/image-page'); 
+    router.push('/imagerecognition/image-page');
   };
-  
+
   return (
     <MainCard
       title="Alvaro Valdez-Duran"
@@ -31,7 +31,7 @@ export default function HomePage() {
         maxWidth: '900px',
         margin: 'auto',
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'column'
       }}
     >
       <Typography variant="h2" gutterBottom align="center" sx={{ fontWeight: 'bold', color: theme.palette.primary.main }}>
@@ -39,7 +39,9 @@ export default function HomePage() {
       </Typography>
 
       <Typography variant="body1" paragraph sx={{ lineHeight: 1.6 }}>
-        About This Project: Welcome to the Image Recognition App, a web-based platform designed to analyze and identify the content of uploaded images using cutting-edge AI technology. This project demonstrates the integration of powerful backend services, an interactive frontend, and cloud-based AI solutions to deliver a seamless and innovative user experience.
+        About This Project: Welcome to the Image Recognition App, a web-based platform designed to analyze and identify the content of
+        uploaded images using cutting-edge AI technology. This project demonstrates the integration of powerful backend services, an
+        interactive frontend, and cloud-based AI solutions to deliver a seamless and innovative user experience.
       </Typography>
 
       <Divider sx={{ marginY: 3 }} />
@@ -50,16 +52,20 @@ export default function HomePage() {
 
       <Box sx={{ marginBottom: 2 }}>
         <Typography variant="body1" paragraph>
-          <strong>AI-Powered Image Analysis:</strong> Identify objects, scenes, and other elements in your images using Azure Computer Vision.
+          <strong>AI-Powered Image Analysis:</strong> Identify objects, scenes, and other elements in your images using Azure Computer
+          Vision.
         </Typography>
         <Typography variant="body1" paragraph>
-          <strong>Intuitive Interface:</strong> A modern, responsive design built with Next.js and Material UI for a clean and easy-to-navigate experience.
+          <strong>Intuitive Interface:</strong> A modern, responsive design built with Next.js and Material UI for a clean and
+          easy-to-navigate experience.
         </Typography>
         <Typography variant="body1" paragraph>
-          <strong>Fast and Secure:</strong> Backend powered by Node.js with Express.js, ensuring quick processing and secure handling of your images.
+          <strong>Fast and Secure:</strong> Backend powered by Node.js with Express.js, ensuring quick processing and secure handling of
+          your images.
         </Typography>
         <Typography variant="body1" paragraph>
-          <strong>Cloud Integration:</strong> Deployed with Render for backend APIs and GitHub Pages for the frontend, demonstrating a scalable and cost-efficient approach.
+          <strong>Cloud Integration:</strong> Deployed with Render for backend APIs and GitHub Pages for the frontend, demonstrating a
+          scalable and cost-efficient approach.
         </Typography>
       </Box>
 
@@ -94,7 +100,8 @@ export default function HomePage() {
       </Typography>
 
       <Typography variant="body1" paragraph>
-        Upload an image and see how the app can detect and describe the content. Whether it's objects, landmarks, or scenes, this app aims to provide an accurate analysis powered by state-of-the-art AI technology.
+        Upload an image and see how the app can detect and describe the content. Whether it&apos;s objects, landmarks, or scenes, this app
+        aims to provide an accurate analysis powered by state-of-the-art AI technology.
       </Typography>
 
       <Box sx={{ textAlign: 'center', marginTop: 3 }}>
@@ -108,8 +115,8 @@ export default function HomePage() {
             borderRadius: '25px',
             boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
             '&:hover': {
-              boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
-            },
+              boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)'
+            }
           }}
           onClick={handleClick}
         >
@@ -123,42 +130,25 @@ export default function HomePage() {
           justifyContent: 'center',
           alignItems: 'center',
           marginTop: 4,
-          flexDirection: 'column',
+          flexDirection: 'column'
         }}
       >
         <Typography variant="body2" color="textSecondary" sx={{ marginBottom: 1 }}>
           Connect with me
         </Typography>
-        
+
         <Box>
-          <IconButton
-            component={Link}
-            href="https://www.linkedin.com/in/alvaro-valdez-duran/"
-            target="_blank"
-            sx={{ margin: 1 }}
-          >
+          <IconButton component={Link} href="https://www.linkedin.com/in/alvaro-valdez-duran/" target="_blank" sx={{ margin: 1 }}>
             <LinkedIn fontSize="large" color="primary" />
           </IconButton>
 
-          <IconButton
-            component={Link}
-            href="https://github.com/AlvVal282"
-            target="_blank"
-            sx={{ margin: 1 }}
-          >
+          <IconButton component={Link} href="https://github.com/AlvVal282" target="_blank" sx={{ margin: 1 }}>
             <GitHub fontSize="large" color="primary" />
           </IconButton>
         </Box>
-        <Button
-            variant="contained"
-            color="primary"
-            sx={{ marginTop: 2 }}
-            component={Link}
-            href= "/resume-page"
-            target="_blank"
-          >
-            View My Resume
-          </Button>
+        <Button variant="contained" color="primary" sx={{ marginTop: 2 }} component={Link} href="/resume-page" target="_blank">
+          View My Resume
+        </Button>
       </Box>
     </MainCard>
   );

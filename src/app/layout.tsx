@@ -6,8 +6,8 @@ import './globals.css';
 import ProviderWrapper from './ProviderWrapper';
 
 export const metadata: Metadata = {
-  title: 'Alvaro\'s Portfolio',
-  description: 'Alvaro\'s Portfolio'
+  title: "Alvaro's Portfolio",
+  description: "Alvaro's Portfolio"
 };
 
 export default function RootLayout({ children }: { children: React.ReactElement }) {
