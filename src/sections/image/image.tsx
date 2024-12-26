@@ -18,7 +18,6 @@ interface IImageProps {
   onError: (msg: string) => void;
 }
 
-// Custom hook for image upload
 function useImageUpload() {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const { getRootProps, getInputProps } = useDropzone({
