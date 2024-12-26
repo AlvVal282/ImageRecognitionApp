@@ -8,7 +8,7 @@ import { fetcher } from 'utils/axios';
 import { MenuProps, NavItemType } from 'types/menu';
 
 const initialState: MenuProps = {
-  openedItem: 'dashboard',
+  openedItem: 'dashboard' ,
   openedComponent: 'buttons',
   openedHorizontalItem: null,
   isDashboardDrawerOpened: false,
