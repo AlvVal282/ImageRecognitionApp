@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  basePath: '/ImageRecognitionApp',
   output: 'standalone',
   modularizeImports: {
     '@mui/material': {
